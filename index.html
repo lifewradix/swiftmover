@@ -90,6 +90,16 @@
             background-position: right 1.5rem center;
             background-size: 1.5rem;
         }
+
+        .form-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--brand-orange);
+            margin-bottom: 8px;
+            display: block;
+            font-weight: 900;
+        }
     </style>
 </head>
 <body>
@@ -305,40 +315,61 @@
                     <p class="text-zinc-500 font-bold uppercase tracking-widest text-xs">Nairobi's Best Moving Quote</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-4 md:gap-6 mb-6">
+                <div class="grid md:grid-cols-2 gap-8">
                     <div class="space-y-4">
-                        <input id="from" type="text" placeholder="PICKUP FROM" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all placeholder:text-zinc-600">
-                        <input id="to" type="text" placeholder="DESTINATION" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all placeholder:text-zinc-600">
+                        <span class="form-label">Pickup (Moving From)</span>
+                        <input id="from_loc" type="text" placeholder="PICKUP LOCATION" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all placeholder:text-zinc-600">
+                        <select id="from_rooms" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all appearance-none cursor-pointer">
+                            <option value="" disabled selected>ROOMS IN CURRENT HOUSE</option>
+                            <option>Bedsitter / Studio</option>
+                            <option>1 Bedroom</option>
+                            <option>2 Bedroom</option>
+                            <option>3+ Bedroom</option>
+                            <option>Office Space</option>
+                        </select>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input id="from_floor" type="text" placeholder="FLOOR NO." class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all placeholder:text-zinc-600">
+                            <select id="from_elev" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all appearance-none cursor-pointer">
+                                <option value="" disabled selected>ELEVATOR?</option>
+                                <option>Yes, Elevator</option>
+                                <option>No Elevator</option>
+                            </select>
+                        </div>
                     </div>
-                    
+
                     <div class="space-y-4">
-                        <select id="rooms" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all appearance-none cursor-pointer">
-                            <option value="" disabled selected>ROOMS</option>
-                            <option value="Bedsitter/Studio">Bedsitter/Studio</option>
-                            <option value="1 Bedroom">1 Bedroom</option>
-                            <option value="2 Bedrooms">2 Bedrooms</option>
-                            <option value="3+ Bedrooms">3+ Bedrooms</option>
+                        <span class="form-label">Destination (Moving To)</span>
+                        <input id="to_loc" type="text" placeholder="DESTINATION LOCATION" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all placeholder:text-zinc-600">
+                        <select id="to_rooms" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all appearance-none cursor-pointer">
+                            <option value="" disabled selected>ROOMS IN NEW HOUSE</option>
+                            <option>Bedsitter / Studio</option>
+                            <option>1 Bedroom</option>
+                            <option>2 Bedroom</option>
+                            <option>3+ Bedroom</option>
+                            <option>Office Space</option>
                         </select>
-                        <select id="floors" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all appearance-none cursor-pointer">
-                            <option value="" disabled selected>WHICH FLOOR?</option>
-                            <option value="Ground Floor">Ground Floor</option>
-                            <option value="1st - 3rd Floor">1st - 3rd Floor</option>
-                            <option value="4th Floor+ (No Lift)">4th Floor+ (No Lift)</option>
-                            <option value="Lift Available">Lift Available</option>
-                        </select>
+                        <div class="grid grid-cols-2 gap-2">
+                            <input id="to_floor" type="text" placeholder="FLOOR NO." class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all placeholder:text-zinc-600">
+                            <select id="to_elev" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all appearance-none cursor-pointer">
+                                <option value="" disabled selected>ELEVATOR?</option>
+                                <option>Yes, Elevator</option>
+                                <option>No Elevator</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mb-8">
-                    <textarea id="details" rows="3" placeholder="EXTRA DETAILS (e.g. Piano, safe, fragile items...)" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all placeholder:text-zinc-600"></textarea>
+                <div class="mt-8 mb-8">
+                    <span class="form-label">Inventory & Notes</span>
+                    <textarea id="details" rows="3" placeholder="LIST FRAGILE ITEMS OR SPECIAL INSTRUCTIONS (e.g. Piano, safe...)" class="w-full bg-zinc-900 border border-white/10 p-5 rounded-2xl text-white focus:border-orange outline-none transition-all placeholder:text-zinc-600"></textarea>
                 </div>
 
                 <div class="grid sm:grid-cols-2 gap-4">
-                    <button onclick="handleBooking('whatsapp')" class="bg-orange text-white font-black py-6 rounded-2xl text-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-3 uppercase">
-                        WhatsApp <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <button onclick="handleBooking('whatsapp')" class="bg-orange text-white font-black py-6 rounded-2xl text-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-3 uppercase tracking-tighter">
+                        WhatsApp Request <i class="fa-brands fa-whatsapp text-2xl"></i>
                     </button>
-                    <button onclick="handleBooking('sms')" class="bg-white text-black font-black py-6 rounded-2xl text-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-3 uppercase">
-                        Send SMS <i class="fa-solid fa-comment-sms text-2xl"></i>
+                    <button onclick="handleBooking('sms')" class="bg-white text-black font-black py-6 rounded-2xl text-lg hover:scale-[1.02] transition-all flex items-center justify-center gap-3 uppercase tracking-tighter">
+                        Send Direct SMS <i class="fa-solid fa-comment-sms text-2xl"></i>
                     </button>
                 </div>
             </div>
@@ -417,17 +448,24 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // BOOKING HANDLER
+        // UPDATED BOOKING HANDLER
         function handleBooking(method) {
-            const from = document.getElementById('from').value || "Not specified";
-            const to = document.getElementById('to').value || "Not specified";
-            const rooms = document.getElementById('rooms').value || "Not specified";
-            const floors = document.getElementById('floors').value || "Not specified";
+            const fLoc = document.getElementById('from_loc').value || "N/A";
+            const fRooms = document.getElementById('from_rooms').value || "N/A";
+            const fFloor = document.getElementById('from_floor').value || "0";
+            const fElev = document.getElementById('from_elev').value || "N/A";
+
+            const tLoc = document.getElementById('to_loc').value || "N/A";
+            const tRooms = document.getElementById('to_rooms').value || "N/A";
+            const tFloor = document.getElementById('to_floor').value || "0";
+            const tElev = document.getElementById('to_elev').value || "N/A";
+
             const details = document.getElementById('details').value || "None";
+            
             const phone = "0722969776";
             const intlPhone = "254722969776";
 
-            const message = `SWIFT PACKER BOOKING:%0A-----------------------%0A📍 FROM: ${from}%0A🏁 TO: ${to}%0A🏠 ROOMS: ${rooms}%0A🏢 FLOOR: ${floors}%0A📝 EXTRA: ${details}`;
+            const message = `SWIFT PACKER BOOKING:%0A-----------------------%0AFROM: ${fLoc}%0ALAYOUT: ${fRooms}%0AFLOOR: ${fFloor} (${fElev})%0A%0ATO: ${tLoc}%0ALAYOUT: ${tRooms}%0AFLOOR: ${tFloor} (${tElev})%0A%0ANOTES: ${details}`;
 
             if (method === 'whatsapp') {
                 window.open(`https://wa.me/${intlPhone}?text=${message}`);
